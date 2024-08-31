@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import React, { useContext } from "react";
 import {
     ClerkProvider,
     SignInButton,
@@ -8,13 +8,22 @@ import {
     UserButton,
 } from "@clerk/nextjs";
 import Link from "next/link";
+import { BiMenu } from "react-icons/bi";
+import { ShowSidebarContext } from "../context/SidebarContext";
 
 const Navbar = () => {
+
+
+    const { ShowContext, setShowContext } = useContext(ShowSidebarContext)
+
     return (
         <>
             <div className="navbar bg-base-100 px-4">
-                <div className="flex-1">
+                <div className="flex-1 items-center">
                     <Image src="/logo.jpg" width={100} height={100} alt="logo" />
+                    <SignedIn>
+                        <BiMenu className="w-6 h-6 ml-2 cursor-pointer" onClick={() => setShowContext(!ShowContext)} />
+                    </SignedIn>
                 </div>
                 <div className="flex-none gap-2">
                     <div className="dropdown dropdown-end">
